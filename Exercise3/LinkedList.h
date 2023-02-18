@@ -1,7 +1,7 @@
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
-
 #include <iostream>
+using namespace std;
 
 struct LinkedList{
   struct Link {
@@ -13,15 +13,25 @@ struct LinkedList{
 			next = nxt;
 		}
 	}* head;
+    public:
 
-	void add(LinkedList::Link* l, int n){
-        
-    }
+ 
+   void add(Link* l, int n) {
+        for (int i = 0; i < n; i++) {
+            Link* newLink = new Link;
+            newLink->data = &i;
+            newLink->next = nullptr;
 
-	void print(){
+            newLink->next = l->next;
+            l->next = newLink;
 
-    }
-
+            while (l->next != nullptr) {
+                l = l->next;
+            }
+            l->next = nullptr;
+        }
+    }	
+	void print();
     void cleanup() {
 		if (head == 0){
 			std::cout << "list is empty";
